@@ -1,0 +1,18 @@
+Release 14.5 Drc P.58f (lin)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Tue Jan 28 11:02:58 2014
+
+drc -z project_r.ncd
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net Data/tick_date_AND_22_o is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net Data/signal_G is sourced by
+   a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net Data/tick_PWR_7_o_AND_37_o1
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+DRC detected 0 errors and 3 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

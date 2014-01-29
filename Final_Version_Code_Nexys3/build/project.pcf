@@ -1,0 +1,12 @@
+//! **************************************************************************
+// Written by: Map P.58f on Tue Jan 28 11:02:39 2014
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "Reset" LOCATE = SITE "T10" LEVEL 1;
+COMP "conf_LCD<0>" LOCATE = SITE "U16" LEVEL 1;
+COMP "conf_LCD<1>" LOCATE = SITE "V16" LEVEL 1;
+COMP "Rx" LOCATE = SITE "V12" LEVEL 1;
+COMP "DoutTx" LOCATE = SITE "T12" LEVEL 1;
+SCHEMATIC END;
+

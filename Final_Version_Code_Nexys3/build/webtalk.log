@@ -1,0 +1,16 @@
+Release 14.5 - WebTalk (P.58f)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+Project Information
+--------------------
+ProjectID=f4eccbb68daa406eaa8d149612fb6235
+ProjectIteration=2
+
+WebTalk Summary
+----------------
+INFO:WebTalk:1 - WebTalk is enabled because you are using a WebPACK license.
+
+INFO:WebTalk:8 - WebTalk Install setting is ON.
+INFO:WebTalk:6 - WebTalk User setting is ON.
+
+INFO:WebTalk:5 - /home/nmalpicf/Dropbox/UNAL/Semestre_7/4_Digital_I/Information_Point/XBee_Tx/XBee_Code/Final_Version/Final_Version_Code_Nexys3/build/usage_statistics_webtalk.html WebTalk report has not been sent to Xilinx.  Please check your network and proxy settings.  For additional details about this file, please refer to the WebTalk help file at /opt/Xilinx/14.5/ISE_DS/ISE/data/reports/webtalk_introduction.html

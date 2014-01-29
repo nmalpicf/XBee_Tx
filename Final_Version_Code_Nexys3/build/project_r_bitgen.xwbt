@@ -1,0 +1,7 @@
+INFILE=/home/nmalpicf/Dropbox/UNAL/Semestre_7/4_Digital_I/Information_Point/XBee_Tx/XBee_Code/Final_Version/Final_Version_Code_Nexys3/build/project_r.ncd
+OUTFILE=/home/nmalpicf/Dropbox/UNAL/Semestre_7/4_Digital_I/Information_Point/XBee_Tx/XBee_Code/Final_Version/Final_Version_Code_Nexys3/build/project_r.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=/home/nmalpicf/Dropbox/UNAL/Semestre_7/4_Digital_I/Information_Point/XBee_Tx/XBee_Code/Final_Version/Final_Version_Code_Nexys3/build
+LICENSE=WebPack
+USER_INFO=210725175_0_0_512
