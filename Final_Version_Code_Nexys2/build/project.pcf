@@ -1,0 +1,13 @@
+//! **************************************************************************
+// Written by: Map P.58f on Tue Jan 28 11:12:06 2014
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "Reset" LOCATE = SITE "G18" LEVEL 1;
+COMP "conf_LCD<0>" LOCATE = SITE "J14" LEVEL 1;
+COMP "conf_LCD<1>" LOCATE = SITE "J15" LEVEL 1;
+COMP "Rx" LOCATE = SITE "K12" LEVEL 1;
+COMP "DoutTx" LOCATE = SITE "L15" LEVEL 1;
+NET "Clk_BUFGP/IBUFG" BEL "Clk_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+SCHEMATIC END;
+

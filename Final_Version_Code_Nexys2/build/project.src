@@ -1,0 +1,8 @@
+verilog work ../Top_XBee.v
+verilog work ../ControllerTx.v
+verilog work ../Counter.v
+verilog work ../PlotCoder.v
+verilog work ../Compare.v
+verilog work ../CounterII.v
+verilog work ../Data.v
+verilog work ../Control.v

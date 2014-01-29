@@ -1,0 +1,634 @@
+Release 14.5 - xst P.58f (lin)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> 
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "project.src"
+Input Format                       : mixed
+
+---- Target Parameters
+Target Device                      : xc3s500e-4fg320
+Output File Name                   : "project.ngc"
+Output Format                      : NGC
+
+---- Source Options
+Top Module Name                    : Top_XBee
+
+---- General Options
+Optimization Goal                  : Area
+Optimization Effort                : 1
+RTL Output                         : yes
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../Top_XBee.v" in library work
+Compiling verilog file "../ControllerTx.v" in library work
+Module <Top_XBee> compiled
+Compiling verilog file "../Counter.v" in library work
+Module <ControllerTx> compiled
+Compiling verilog file "../PlotCoder.v" in library work
+Module <Counter> compiled
+Compiling verilog file "../Compare.v" in library work
+Module <PlotCoder> compiled
+Compiling verilog file "../CounterII.v" in library work
+Module <Compare> compiled
+Compiling verilog file "../Data.v" in library work
+Module <CounterII> compiled
+Compiling verilog file "../Control.v" in library work
+Module <Data> compiled
+Module <Control> compiled
+No errors in compilation
+Analysis of file <"project.src"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Top_XBee> in library <work>.
+
+Analyzing hierarchy for module <Counter> in library <work> with parameters.
+	N = "00000000000000000001010001011000"
+
+Analyzing hierarchy for module <ControllerTx> in library <work> with parameters.
+	Busy = "001"
+	BusyState = "000"
+	CodeGen = "011"
+	Encode = "001"
+	Evacuation = "010"
+	GetOut = "010"
+	Iddle = "000"
+	Load = "100"
+	Move = "100"
+	Push = "011"
+	Shift = "101"
+
+Analyzing hierarchy for module <PlotCoder> in library <work> with parameters.
+	BusyState = "000"
+	Encode = "001"
+	GetOut = "010"
+	Move = "100"
+	Push = "011"
+
+Analyzing hierarchy for module <Compare> in library <work> with parameters.
+	Time = "00000000000000010011000100101000"
+
+Analyzing hierarchy for module <CounterII> in library <work> with parameters.
+	N = "00000000000000000001010001011000"
+
+Analyzing hierarchy for module <Data> in library <work>.
+
+Analyzing hierarchy for module <Control> in library <work> with parameters.
+	compare = "11"
+	data_Bits = "10"
+	iddle = "00"
+	stop_Bit = "01"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Top_XBee>.
+Module <Top_XBee> is correct for synthesis.
+ 
+Analyzing module <Counter> in library <work>.
+	N = 32'sb00000000000000000001010001011000
+Module <Counter> is correct for synthesis.
+ 
+Analyzing module <ControllerTx> in library <work>.
+	Busy = 3'b001
+	BusyState = 3'b000
+	CodeGen = 3'b011
+	Encode = 3'b001
+	Evacuation = 3'b010
+	GetOut = 3'b010
+	Iddle = 3'b000
+	Load = 3'b100
+	Move = 3'b100
+	Push = 3'b011
+	Shift = 3'b101
+Module <ControllerTx> is correct for synthesis.
+ 
+Analyzing module <PlotCoder> in library <work>.
+	BusyState = 3'b000
+	Encode = 3'b001
+	GetOut = 3'b010
+	Move = 3'b100
+	Push = 3'b011
+Module <PlotCoder> is correct for synthesis.
+ 
+Analyzing module <Compare> in library <work>.
+	Time = 32'sb00000000000000010011000100101000
+Module <Compare> is correct for synthesis.
+ 
+Analyzing module <CounterII> in library <work>.
+	N = 32'sb00000000000000000001010001011000
+Module <CounterII> is correct for synthesis.
+ 
+Analyzing module <Data> in library <work>.
+WARNING:Xst:905 - "../Data.v" line 14: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <date>, <counter>, <Reg_Out>, <Rx>
+Module <Data> is correct for synthesis.
+ 
+Analyzing module <Control> in library <work>.
+	compare = 2'b11
+	data_Bits = 2'b10
+	iddle = 2'b00
+	stop_Bit = 2'b01
+Module <Control> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <StartBit> in unit <PlotCoder> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <StopBit> in unit <PlotCoder> has a constant value of 1 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <Counter>.
+    Related source file is "../Counter.v".
+    Found 1-bit register for signal <TickTack>.
+    Found 14-bit up counter for signal <Counter>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <Counter> synthesized.
+
+
+Synthesizing Unit <ControllerTx>.
+    Related source file is "../ControllerTx.v".
+WARNING:Xst:646 - Signal <NextState> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_0> for signal <CurrentState>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 6                                              |
+    | Clock              | Clk                       (rising_edge)        |
+    | Reset              | Reset                     (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 3-bit register for signal <State>.
+    Found 1-bit register for signal <Rx_Check>.
+    Found 4-bit up counter for signal <Rx_Count>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+	inferred   4 D-type flip-flop(s).
+Unit <ControllerTx> synthesized.
+
+
+Synthesizing Unit <PlotCoder>.
+    Related source file is "../PlotCoder.v".
+    Found 1-bit register for signal <Repeat>.
+    Found 1-bit register for signal <BusyFlag>.
+    Found 1-bit register for signal <DoutTx>.
+    Found 8-bit register for signal <DinT>.
+    Found 12-bit register for signal <DoutTxT>.
+    Found 4-bit up counter for signal <OK>.
+    Found 1-bit register for signal <ParityBit>.
+    Found 1-bit xor8 for signal <ParityBit$xor0000> created at line 36.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  24 D-type flip-flop(s).
+	inferred   1 Xor(s).
+Unit <PlotCoder> synthesized.
+
+
+Synthesizing Unit <Compare>.
+    Related source file is "../Compare.v".
+WARNING:Xst:653 - Signal <B> is used but never assigned. This sourceless signal will be automatically connected to value 01100011.
+WARNING:Xst:653 - Signal <A> is used but never assigned. This sourceless signal will be automatically connected to value 01100110.
+    Found 2-bit register for signal <conf2>.
+    Found 29-bit up counter for signal <counter>.
+    Found 1-bit register for signal <Do>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   3 D-type flip-flop(s).
+Unit <Compare> synthesized.
+
+
+Synthesizing Unit <CounterII>.
+    Related source file is "../CounterII.v".
+    Found 14-bit up counter for signal <counter>.
+    Found 1-bit register for signal <signal>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <CounterII> synthesized.
+
+
+Synthesizing Unit <Data>.
+    Related source file is "../Data.v".
+WARNING:Xst:737 - Found 1-bit latch for signal <signal>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 8-bit latch for signal <data>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 4-bit latch for signal <counter>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 8-bit latch for signal <Reg_Out>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 4-bit adder for signal <counter$addsub0000> created at line 23.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+Unit <Data> synthesized.
+
+
+Synthesizing Unit <Control>.
+    Related source file is "../Control.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <state> of Case statement line 42 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <state> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 4                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | reset                     (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <Control> synthesized.
+
+
+Synthesizing Unit <Top_XBee>.
+    Related source file is "../Top_XBee.v".
+WARNING:Xst:1780 - Signal <s_comp> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <Top_XBee> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 5
+ 14-bit up counter                                     : 2
+ 29-bit up counter                                     : 1
+ 4-bit up counter                                      : 2
+# Registers                                            : 12
+ 1-bit register                                        : 8
+ 12-bit register                                       : 1
+ 2-bit register                                        : 1
+ 3-bit register                                        : 1
+ 8-bit register                                        : 1
+# Latches                                              : 4
+ 1-bit latch                                           : 1
+ 4-bit latch                                           : 1
+ 8-bit latch                                           : 2
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <Control/state/FSM> on signal <state[1:2]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 11
+ 11    | 10
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <ControllerTx/CurrentState/FSM> on signal <CurrentState[1:6]> with one-hot encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000001
+ 001   | 000010
+ 010   | 000100
+ 011   | 001000
+ 100   | 010000
+ 101   | 100000
+-------------------
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 2
+# Adders/Subtractors                                   : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 5
+ 14-bit up counter                                     : 2
+ 29-bit up counter                                     : 1
+ 4-bit up counter                                      : 2
+# Registers                                            : 33
+ Flip-Flops                                            : 33
+# Latches                                              : 4
+ 1-bit latch                                           : 1
+ 4-bit latch                                           : 1
+ 8-bit latch                                           : 2
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <Top_XBee> ...
+
+Optimizing unit <ControllerTx> ...
+
+Optimizing unit <PlotCoder> ...
+
+Optimizing unit <Compare> ...
+
+Optimizing unit <Data> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+FlipFlop PlotCoder/BusyFlag has been replicated 1 time(s) to handle iob=true attribute.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 107
+ Flip-Flops                                            : 107
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : project.ngr
+Top Level Output File Name         : project.ngc
+Output Format                      : NGC
+Optimization Goal                  : Area
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 17
+
+Cell Usage :
+# BELS                             : 318
+#      GND                         : 1
+#      INV                         : 8
+#      LUT1                        : 54
+#      LUT2                        : 24
+#      LUT3                        : 40
+#      LUT4                        : 67
+#      MUXCY                       : 62
+#      MUXF5                       : 4
+#      VCC                         : 1
+#      XORCY                       : 57
+# FlipFlops/Latches                : 128
+#      FD                          : 8
+#      FDC                         : 20
+#      FDE                         : 14
+#      FDP                         : 1
+#      FDR                         : 3
+#      FDRE                        : 47
+#      FDS                         : 14
+#      LDC                         : 1
+#      LDE                         : 20
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 16
+#      IBUF                        : 12
+#      OBUF                        : 4
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-4 
+
+ Number of Slices:                      105  out of   4656     2%  
+ Number of Slice Flip Flops:            124  out of   9312     1%  
+ Number of 4 input LUTs:                193  out of   9312     2%  
+ Number of IOs:                          17
+ Number of bonded IOBs:                  17  out of    232     7%  
+    IOB Flip Flops:                       4
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-------------------------------------------------+------------------------+-------+
+Clock Signal                                     | Clock buffer(FF name)  | Load  |
+-------------------------------------------------+------------------------+-------+
+Clk                                              | BUFGP                  | 107   |
+CounterII/signal1                                | BUFG                   | 20    |
+Data/signal_cmp_eq0000(Data/signal_cmp_eq00001:O)| NONE(*)(Data/signal)   | 1     |
+-------------------------------------------------+------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+--------------------------------------------+------------------------+-------+
+Control Signal                              | Buffer(FF name)        | Load  |
+--------------------------------------------+------------------------+-------+
+Reset                                       | IBUF                   | 21    |
+Data/signal_0_not0000(Data/signal_or00001:O)| NONE(Data/signal)      | 1     |
+--------------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 6.815ns (Maximum Frequency: 146.735MHz)
+   Minimum input arrival time before clock: 4.583ns
+   Maximum output required time after clock: 4.283ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Clk'
+  Clock period: 6.815ns (frequency: 146.735MHz)
+  Total number of paths / destination ports: 2648 / 226
+-------------------------------------------------------------------------
+Delay:               6.815ns (Levels of Logic = 3)
+  Source:            ControllerTx/State_0 (FF)
+  Destination:       PlotCoder/DoutTxT_9 (FF)
+  Source Clock:      Clk rising
+  Destination Clock: Clk rising
+
+  Data Path: ControllerTx/State_0 to PlotCoder/DoutTxT_9
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q             21   0.591   1.303  ControllerTx/State_0 (ControllerTx/State_0)
+     LUT3:I0->O            2   0.704   0.482  PlotCoder/Repeat_cmp_eq00001 (PlotCoder/Repeat_cmp_eq0000)
+     LUT3:I2->O           12   0.704   0.996  PlotCoder/DoutTxT_mux0000<1>21 (PlotCoder/DoutTx_not0001)
+     LUT4:I2->O            1   0.704   0.420  PlotCoder/DoutTxT_mux0000<9>_SW0 (N12)
+     FDS:S                     0.911          PlotCoder/DoutTxT_9
+    ----------------------------------------
+    Total                      6.815ns (3.614ns logic, 3.201ns route)
+                                       (53.0% logic, 47.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CounterII/signal1'
+  Clock period: 4.330ns (frequency: 230.947MHz)
+  Total number of paths / destination ports: 108 / 20
+-------------------------------------------------------------------------
+Delay:               4.330ns (Levels of Logic = 2)
+  Source:            Data/counter_0 (LATCH)
+  Destination:       Data/data_7 (LATCH)
+  Source Clock:      CounterII/signal1 falling
+  Destination Clock: CounterII/signal1 falling
+
+  Data Path: Data/counter_0 to Data/data_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDE:G->Q              5   0.676   0.712  Data/counter_0 (Data/counter_0)
+     LUT4:I1->O           17   0.704   1.226  Data/signal_cmp_eq00001 (Data/signal_cmp_eq0000)
+     LUT3:I0->O            1   0.704   0.000  Data/data_mux0000<7>1 (Data/data_mux0000<7>)
+     LDE:D                     0.308          Data/data_7
+    ----------------------------------------
+    Total                      4.330ns (2.392ns logic, 1.938ns route)
+                                       (55.2% logic, 44.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Clk'
+  Total number of paths / destination ports: 33 / 26
+-------------------------------------------------------------------------
+Offset:              4.583ns (Levels of Logic = 4)
+  Source:            ND (PAD)
+  Destination:       ControllerTx/State_1 (FF)
+  Destination Clock: Clk rising
+
+  Data Path: ND to ControllerTx/State_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   1.218   0.762  ND_IBUF (ND_IBUF)
+     LUT2:I0->O            1   0.704   0.000  ControllerTx/State_mux0000<0>11 (ControllerTx/State_mux0000<0>1)
+     MUXF5:I1->O           3   0.321   0.566  ControllerTx/State_mux0000<0>1_f5 (ControllerTx/N01)
+     LUT4:I2->O            1   0.704   0.000  ControllerTx/State_mux0000<2>1 (ControllerTx/State_mux0000<2>)
+     FDE:D                     0.308          ControllerTx/State_0
+    ----------------------------------------
+    Total                      4.583ns (3.255ns logic, 1.328ns route)
+                                       (71.0% logic, 29.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CounterII/signal1'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              2.756ns (Levels of Logic = 2)
+  Source:            Rx (PAD)
+  Destination:       Data/Reg_Out_7 (LATCH)
+  Destination Clock: CounterII/signal1 falling
+
+  Data Path: Rx to Data/Reg_Out_7
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   1.218   0.526  Rx_IBUF (Rx_IBUF)
+     LUT3:I1->O            1   0.704   0.000  Data/Reg_Out_mux0000<7>1 (Data/Reg_Out_mux0000<7>)
+     LDE:D                     0.308          Data/Reg_Out_7
+    ----------------------------------------
+    Total                      2.756ns (2.230ns logic, 0.526ns route)
+                                       (80.9% logic, 19.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Clk'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            PlotCoder/BusyFlag_1 (FF)
+  Destination:       BusyFlag (PAD)
+  Source Clock:      Clk rising
+
+  Data Path: PlotCoder/BusyFlag_1 to BusyFlag
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  PlotCoder/BusyFlag_1 (PlotCoder/BusyFlag_1)
+     OBUF:I->O                 3.272          BusyFlag_OBUF (BusyFlag)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 4.86 secs
+ 
+--> 
+
+
+Total memory usage is 162144 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    9 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
+
